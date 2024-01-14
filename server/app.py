@@ -17,8 +17,9 @@ db.init_app(app)
 
 @app.route('/clear')
 def clear_session():
-    session['page_views'] = 0
-    return {'message': '200: Successfully cleared session data.'}, 200
+    session['page_views'] = 0;
+    #print(session['page_views']);
+    return make_response({'message': '200: Successfully cleared session data.'}, 200);
 
 @app.route('/articles')
 def index_articles():
@@ -41,6 +42,7 @@ def show_article(id):
     #print(type(session["page_views"]));
     #print((3 < session["page_views"]));
     if (3 < session["page_views"]):
+        session["page_views"] = 4;
         #print("sent out error max views reached!");
         return make_response({"message": "Maximum pageview limit reached"}, 401);
     else:
